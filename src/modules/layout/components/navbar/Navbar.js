@@ -74,6 +74,9 @@ let Navbar = () => {
                                 <Link to="/products/women" className="nav-link">Women's Wear</Link>
                             </li>
                             <li className="nav-item">
+                                <Link to="/products/watch" className="nav-link">Watch's </Link>
+                            </li>
+                            <li className="nav-item">
                                 {
                                     user && user.isAdmin &&
                                     <Link to="/products/upload" className="nav-link">Upload</Link>

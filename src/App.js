@@ -4,6 +4,7 @@ import Navbar from "./modules/layout/components/navbar/Navbar";
 import {BrowserRouter as Router , Route , Switch} from 'react-router-dom';
 import Home from "./modules/layout/components/home/Home";
 import MensCollection from "./modules/products/components/mens-collection/MensCollection";
+import WatchCollection from "./modules/products/components/watch-collection/WatchCollection";
 import WomensCollections from "./modules/products/components/womens-collection/WomensCollections";
 import KidsCollection from "./modules/products/components/kids-collection/KidsCollection";
 import UploadProducts from "./modules/products/components/upload-products/UploadProducts";
@@ -38,6 +39,7 @@ let App = () => {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/products/men" component={MensCollection}/>
+          <Route exact path='/products/watch' component={WatchCollection}/>
           <Route exact path="/products/women" component={WomensCollections}/>
           <Route exact path="/products/kids" component={KidsCollection}/>
           <PrivateRoute exact path="/products/upload" component={UploadProducts}/>

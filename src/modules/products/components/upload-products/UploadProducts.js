@@ -128,6 +128,7 @@ let UploadProducts = () => {
                                         <option value="MEN">Men's Collection</option>
                                         <option value="WOMEN">Women's Collection</option>
                                         <option value="KIDS">Kid's Collection</option>
+                                        <option value="WATCH">Watch's Collection</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

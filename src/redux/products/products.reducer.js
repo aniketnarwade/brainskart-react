@@ -7,7 +7,7 @@ import {
     MEN_PRODUCT_REQUEST, MEN_PRODUCT_SUCCESS, STRIPE_PAYMENT_FAILURE, STRIPE_PAYMENT_REQUEST, STRIPE_PAYMENT_SUCCESS,
     UPLOAD_PRODUCT_FAILURE,
     UPLOAD_PRODUCT_REQUEST,
-    UPLOAD_PRODUCT_SUCCESS, WOMEN_PRODUCT_FAILURE, WOMEN_PRODUCT_REQUEST, WOMEN_PRODUCT_SUCCESS
+    UPLOAD_PRODUCT_SUCCESS, WATCH_PRODUCT_FAILURE, WATCH_PRODUCT_REQUEST, WATCH_PRODUCT_SUCCESS, WOMEN_PRODUCT_FAILURE, WOMEN_PRODUCT_REQUEST, WOMEN_PRODUCT_SUCCESS
 } from "./products.actionTypes";
 
 export const PRODUCT_FEATURE_KEY = 'product';
@@ -87,6 +87,24 @@ let productReducer = (state = initialState , action) => {
                 products: payload
             };
         case WOMEN_PRODUCT_FAILURE :
+            return  {
+                ...state,
+                loading:  false,
+                errorMessage: payload
+            };
+            // WATCH'S Collection
+        case WATCH_PRODUCT_REQUEST :
+            return  {
+                ...state,
+                loading:  true
+            };
+        case WATCH_PRODUCT_SUCCESS :
+            return  {
+                ...state,
+                loading:  false,
+                products: payload
+            };
+        case WATCH_PRODUCT_FAILURE :
             return  {
                 ...state,
                 loading:  false,

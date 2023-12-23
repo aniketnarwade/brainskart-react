@@ -8,7 +8,7 @@ import {
     MEN_PRODUCT_REQUEST, MEN_PRODUCT_SUCCESS, STRIPE_PAYMENT_FAILURE, STRIPE_PAYMENT_REQUEST, STRIPE_PAYMENT_SUCCESS,
     UPLOAD_PRODUCT_FAILURE,
     UPLOAD_PRODUCT_REQUEST,
-    UPLOAD_PRODUCT_SUCCESS, WOMEN_PRODUCT_FAILURE, WOMEN_PRODUCT_REQUEST, WOMEN_PRODUCT_SUCCESS
+    UPLOAD_PRODUCT_SUCCESS, WATCH_PRODUCT_FAILURE, WATCH_PRODUCT_REQUEST, WATCH_PRODUCT_SUCCESS, WOMEN_PRODUCT_FAILURE, WOMEN_PRODUCT_REQUEST, WOMEN_PRODUCT_SUCCESS
 } from "./products.actionTypes";
 import Axios from "axios";
 import {setAlert} from "../layout/layout.actions";
@@ -79,6 +79,20 @@ let getWomensCollection = () => {
     };
 };
 
+// get Women's Collection
+let getWatchCollection = () => {
+    return async (dispatch) => {
+        try{
+            dispatch({type : WATCH_PRODUCT_REQUEST});
+            let response = await Axios.get(`https://brains-kart-backend.onrender.com/product/watch`);
+            dispatch({type : WATCH_PRODUCT_SUCCESS , payload : response.data});
+        }
+        catch (error) {
+            dispatch({ type : WATCH_PRODUCT_FAILURE , payload : error});
+        }
+    };
+};
+
 // get single Product
 let getProduct = (productId) => {
     return async (dispatch) => {
@@ -122,4 +136,6 @@ export {uploadProduct,
     getKidsCollection,
     getWomensCollection,
     getProduct,
-    makeStripePayment}
+    makeStripePayment,
+    getWatchCollection
+}
