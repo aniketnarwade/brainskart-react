@@ -15,6 +15,8 @@ import {setAlert} from "../layout/layout.actions";
 import {placeOrder} from "../orders/orders.actions";
 import {setAuthToken} from "../../util/setAuthToken";
 
+const url = 'https://brains-kart-backend.onrender.com'
+
 // upload a product
 let uploadProduct = (product , history) => {
     return async (dispatch) => {
@@ -40,7 +42,7 @@ let getMensCollection = () => {
     return async (dispatch) => {
         try{
             dispatch({type : MEN_PRODUCT_REQUEST});
-            let response = await Axios.get(`${process.env.BACKEND_URL}/product/men`);
+            let response = await Axios.get(`${url}/product/men`);
             dispatch({type : MEN_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -54,7 +56,7 @@ let getKidsCollection = () => {
     return async (dispatch) => {
         try{
             dispatch({type : KIDS_PRODUCT_REQUEST});
-            let response = await Axios.get(`${process.env.BACKEND_URL}/product/kids`);
+            let response = await Axios.get(`${url}/product/kids`);
             dispatch({type : KIDS_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -68,7 +70,7 @@ let getWomensCollection = () => {
     return async (dispatch) => {
         try{
             dispatch({type : WOMEN_PRODUCT_REQUEST});
-            let response = await Axios.get(`${process.env.BACKEND_URL}/product/women`);
+            let response = await Axios.get(`${url}/product/women`);
             dispatch({type : WOMEN_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -82,7 +84,7 @@ let getProduct = (productId) => {
     return async (dispatch) => {
         try{
             dispatch({type : GET_PRODUCT_REQUEST});
-            let response = await Axios.get(`${process.env.BACKEND_URL}/product/${productId}`);
+            let response = await Axios.get(`${url}/product/${productId}`);
             dispatch({type : GET_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -104,7 +106,7 @@ let makeStripePayment = (body , history, order) => {
                 }
             };
             dispatch({type : STRIPE_PAYMENT_REQUEST});
-            let response = await Axios.post(`${process.env.BACKEND_URL}/payment/pay`, JSON.stringify(body) , config);
+            let response = await Axios.post(`${url}/payment/pay`, JSON.stringify(body) , config);
             dispatch({ type : STRIPE_PAYMENT_SUCCESS , payload : response.data});
             dispatch(placeOrder(order , history));
         }
