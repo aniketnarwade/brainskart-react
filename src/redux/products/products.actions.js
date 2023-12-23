@@ -15,7 +15,7 @@ import {setAlert} from "../layout/layout.actions";
 import {placeOrder} from "../orders/orders.actions";
 import {setAuthToken} from "../../util/setAuthToken";
 
-const url = process.env.BACKEND_URL;
+const url = 'https://brains-kart-backend.onrender.com'
 
 // upload a product
 let uploadProduct = (product , history) => {
@@ -27,7 +27,7 @@ let uploadProduct = (product , history) => {
                  }
              };
              dispatch({type : UPLOAD_PRODUCT_REQUEST});
-             let response = await Axios.post(`/product/upload`, JSON.stringify(product) , config);
+             let response = await Axios.post(`${url}/product/upload`, JSON.stringify(product) , config);
              dispatch({ type : UPLOAD_PRODUCT_SUCCESS , payload : response.data});
              history.push('/');
          }

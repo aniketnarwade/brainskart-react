@@ -10,6 +10,7 @@ import {
 import {STRIPE_PAYMENT_FAILURE, STRIPE_PAYMENT_REQUEST, STRIPE_PAYMENT_SUCCESS} from "../products/products.actionTypes";
 import Axios from "axios";
 import {setAlert} from "../layout/layout.actions";
+const url = 'https://brains-kart-backend.onrender.com'
 
 // add an item to cart
 let addToCart = (selectedProduct , qty , history) => {
@@ -75,7 +76,7 @@ let placeOrder = (order, history) => {
                 }
             };
             dispatch({type : PLACE_ORDER_REQUEST});
-            let response = await Axios.post(`/order/`, JSON.stringify(order) , config);
+            let response = await Axios.post(`${url}/order/`, JSON.stringify(order) , config);
             dispatch({ type : PLACE_ORDER_SUCCESS , payload : response.data});
             dispatch(clearCartItems());
             history.push('/orders/order-success');
@@ -103,7 +104,7 @@ let getAllOrders = () => {
     return async (dispatch) => {
         try {
             dispatch({type : GET_ALL_ORDERS_REQUEST});
-            let response = await Axios.get(`/order/`);
+            let response = await Axios.get(`${url}/order/`);
             dispatch({ type : GET_ALL_ORDERS_SUCCESS , payload : response.data});
         }
         catch (error) {

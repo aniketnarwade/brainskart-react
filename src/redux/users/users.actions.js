@@ -11,6 +11,7 @@ import {
 import Axios from "axios";
 import {setAlert} from "../layout/layout.actions";
 import {setAuthToken} from "../../util/setAuthToken";
+const url = 'https://brains-kart-backend.onrender.com'
 
 // register a user
 let registerUser = (user, history) => {
@@ -22,7 +23,7 @@ let registerUser = (user, history) => {
                     'Content-Type' : 'application/json'
                 }
             };
-            let response = await Axios.post('/user/register', JSON.stringify(user) , config);
+            let response = await Axios.post(`${url}/user/register`, JSON.stringify(user) , config);
             dispatch({type : REGISTER_USER_SUCCESS , payload : response.data});
             dispatch(setAlert('Registration Success' , 'success'));
             history.push('/users/login');
@@ -46,7 +47,7 @@ let loginUser = (user, history) => {
                     'Content-Type' : 'application/json'
                 }
             };
-            let response = await Axios.post('/user/login', JSON.stringify(user) , config);
+            let response = await Axios.post(`${url}/user/login`, JSON.stringify(user) , config);
             dispatch({type : LOGIN_USER_SUCCESS , payload : response.data});
             dispatch(setAlert('Login Success' , 'success'));
             if(localStorage.token){
@@ -71,7 +72,7 @@ let getUserInfo = () => {
                 setAuthToken(localStorage.getItem('token'));
             }
             dispatch({type : GET_USER_INFO_REQUEST});
-            let response = await Axios.get('/user/');
+            let response = await Axios.get(`${url}/user/`);
             dispatch({type : GET_USER_INFO_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -93,7 +94,7 @@ let updateUserAddress = (address) => {
                 }
             };
             dispatch({type : UPDATE_ADDRESS_REQUEST});
-            let response = await Axios.post('/user/address' , JSON.stringify(address) , config);
+            let response = await Axios.post(`${url}/user/address` , JSON.stringify(address) , config);
             dispatch({type : UPDATE_ADDRESS_SUCCESS , payload : response.data});
         }
         catch (error) {
