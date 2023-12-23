@@ -40,7 +40,7 @@ let getMensCollection = () => {
     return async (dispatch) => {
         try{
             dispatch({type : MEN_PRODUCT_REQUEST});
-            let response = await Axios.get('https://brains-kart-backend.onrender.com/product/men');
+            let response = await Axios.get(`${process.env.BACKEND_URL}/product/men`);
             dispatch({type : MEN_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -54,7 +54,7 @@ let getKidsCollection = () => {
     return async (dispatch) => {
         try{
             dispatch({type : KIDS_PRODUCT_REQUEST});
-            let response = await Axios.get('/product/kids');
+            let response = await Axios.get(`${process.env.BACKEND_URL}/product/kids`);
             dispatch({type : KIDS_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -68,7 +68,7 @@ let getWomensCollection = () => {
     return async (dispatch) => {
         try{
             dispatch({type : WOMEN_PRODUCT_REQUEST});
-            let response = await Axios.get('/product/women');
+            let response = await Axios.get(`${process.env.BACKEND_URL}/product/women`);
             dispatch({type : WOMEN_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -82,7 +82,7 @@ let getProduct = (productId) => {
     return async (dispatch) => {
         try{
             dispatch({type : GET_PRODUCT_REQUEST});
-            let response = await Axios.get(`/product/${productId}`);
+            let response = await Axios.get(`${process.env.BACKEND_URL}/product/${productId}`);
             dispatch({type : GET_PRODUCT_SUCCESS , payload : response.data});
         }
         catch (error) {
@@ -104,7 +104,7 @@ let makeStripePayment = (body , history, order) => {
                 }
             };
             dispatch({type : STRIPE_PAYMENT_REQUEST});
-            let response = await Axios.post(`/payment/pay`, JSON.stringify(body) , config);
+            let response = await Axios.post(`${process.env.BACKEND_URL}/payment/pay`, JSON.stringify(body) , config);
             dispatch({ type : STRIPE_PAYMENT_SUCCESS , payload : response.data});
             dispatch(placeOrder(order , history));
         }
