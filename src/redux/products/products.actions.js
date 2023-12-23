@@ -15,7 +15,7 @@ import {setAlert} from "../layout/layout.actions";
 import {placeOrder} from "../orders/orders.actions";
 import {setAuthToken} from "../../util/setAuthToken";
 
-const url = 'https://brains-kart-backend.onrender.com'
+const url = process.env.BACKEND_URL;
 
 // upload a product
 let uploadProduct = (product , history) => {
